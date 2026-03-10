@@ -13,13 +13,33 @@ class Food {
   Food({required this.name, required this.description, required this.image});
 }
 
-class MyApp extends StatelessWidget {
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       debugShowCheckedModeBanner: false,
+//       home: FoodLibraryScreen(),
+//     );
+//   }
+// }
+class MyApp extends StatefulWidget {
+  @override
+  State<MyApp> createState() => _MyAppState();
+
+  static _MyAppState? of(BuildContext context) =>
+    context.findAncestorStateOfType<_MyAppState>();
+}
+
+class _MyAppState extends State<MyApp> {
+  void refresh(){
+    setState(() {});
+  }
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: FoodLibraryScreen(),
-    );
+       debugShowCheckedModeBanner: false,
+       home: FoodLibraryScreen(),
+     );
   }
 }
 
@@ -71,7 +91,12 @@ class FoodLibraryScreen extends StatelessWidget {
         actions: [
           IconButton(
             icon: Icon(Icons.language),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => ManLanguage()),
+              );
+            },
           ),
           IconButton(
             icon: Icon(Icons.info_outline),
@@ -94,6 +119,46 @@ class FoodLibraryScreen extends StatelessWidget {
             ),
           );
         },),
+    );
+  }
+}
+class ManLanguage extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Ngôn ngữ")),
+
+      body: Column(
+        children: [
+
+          ListTile(
+            title: Text("English"),
+            leading: Radio(
+              value: Language.English,
+              groupValue: currentLanguage,
+              onChanged: (Language? value) {
+                currentLanguage = value!;
+                MyApp.of(context)!.refresh();
+                Navigator.pop(context);
+              },
+            ),
+          ),
+
+          ListTile(
+            title: Text("Tiếng Việt"),
+            leading: Radio(
+              value: Language.Vietnamese,
+              groupValue: currentLanguage,
+              onChanged: (Language? value) {
+                currentLanguage = value!;
+                MyApp.of(context)!.refresh();
+                Navigator.pop(context);
+              },
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
