@@ -100,7 +100,11 @@ class FoodLibraryScreen extends StatelessWidget {
           ),
           IconButton(
             icon: Icon(Icons.info_outline),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,MaterialPageRoute(builder: (_) => Manthongtin())
+              );
+            },
           ),
         ],
       ),
@@ -158,6 +162,40 @@ class ManLanguage extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+class Manthongtin extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Thông tin nhóm"),),
+      body: Center(child: Card(
+        elevation: 5, 
+        margin: EdgeInsets.all(10),
+        child: Padding(
+          padding: EdgeInsets.all(10),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [Icon(
+              Icons.restaurant_menu,
+              size: 50,
+              color: Colors.red,
+            ),
+            SizedBox(height: 10),
+            Text("Ứng dụng thư viện món ăn", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+            SizedBox(height: 15),
+            Text("Môn Học: Lập trình cho thiết bị di động", style: TextStyle(fontSize: 16),),
+            Text("Giáo Viên Hướng Dẫn: Nguyễn Xuân Quế", style: TextStyle(fontSize: 16),),
+            Text("Nhóm 5: Trần Văn Duy",style: TextStyle(fontSize: 16),),
+            Text("Mã Sinh Viên: 23015552", style: TextStyle(fontSize: 16),),
+            Text("Năm Học: 2025-2026", style: TextStyle(fontSize: 16),)
+            ]
+          ),
+          ),
+        ),
       ),
     );
   }
