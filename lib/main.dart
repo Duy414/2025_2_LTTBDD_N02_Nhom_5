@@ -6,6 +6,35 @@ void main() {
 
 enum Language{Vietnamese, English}
 Language currentLanguage = Language.Vietnamese;
+Map<String, Map<String, String>> text = {
+  "Vietnamese": {
+    "tenapp": "Thư Viện Món Ăn",
+    "ngonngu": "Ngôn Ngữ",
+    "thongtin": "Thông Tin Nhóm",
+    "detai": "Ứng dụng thư viện món ăn",
+    "monhoc": "Môn Học: Lập trình cho thiết bị di động",
+    "giaovien": "Giáo Viên Hướng Dẫn: Nguyễn Xuân Quế",
+    "nhom": "Nhóm 5: Trần Văn Duy",
+    "masv": "Mã Sinh Viên: 23015552",
+    "namhoc": "Năm Học: 2025-2026",
+  },
+  "English": {
+    "tenapp": "Food Library",
+    "ngonngu": "Language",
+    "thongtin": "Group information",
+    "detai": "Recipe library app",
+    "monhoc": "Course: Mobile App Development",
+    "giaovien": "Instructor: Nguyen Xuan Que",
+    "nhom": "Group 5: Tran Van Duy",
+    "masv": "ID: 23015552",
+    "namhoc": "Year: 2025-2026",
+  }
+};
+String t(String key) {
+  return currentLanguage == Language.Vietnamese
+      ? text["Vietnamese"]![key]!
+      : text["English"]![key]!;
+}
 class Food {
   String name;
   String description;
@@ -61,6 +90,30 @@ class FoodLibraryScreen extends StatelessWidget {
       name: "Pizza",
       description: "Món ăn nổi tiếng của Ý",
       image: "imgs/pizaa.jpg"),
+    Food(
+      name: "Bún Đậu", 
+      description: "Món ăn của Việt Nam", 
+      image: "imgs/bundau.jpg"),
+    Food(
+      name: "Nem Chua", 
+      description: "Món ăn nổi tiếng của một tỉnh ở Việt Nam", 
+      image: "imgs/nemchua.jpg"),
+    Food(
+      name: "Cơm Tấm", 
+      description: "Món ăn trưa phổ biến", 
+      image: "imgs/comtam.jpg"),
+    Food(
+      name: "Bún Chả", 
+      description: "Món bún cùng với chả", 
+      image: "imgs/buncha.jpg"),
+    Food(
+      name: "Kim Chi", 
+      description: "Món không thể thiếu của bữa ăn ở Hàn Quốc", 
+      image: "imgs/kimchi.jpg"),
+    Food(
+      name: "Hot Dog", 
+      description: "Món ăn nhanh phổ biến ở Mỹ", 
+      image: "imgs/hotdog.jpg"),
   ];
 
   final List<Food> foodsEnglish = [
@@ -80,14 +133,40 @@ class FoodLibraryScreen extends StatelessWidget {
       name: "Pizza",
       description: "Famous Italian dish",
       image: "imgs/pizaa.jpg"),
+    Food(
+      name: "Bun Dau", 
+      description: "Vietnamese food", 
+      image: "imgs/bundau.jpg"),
+    Food(
+      name: "Nem Chua", 
+      description: "A famous dish from a province in Vietnam.", 
+      image: "imgs/nemchua.jpg"),
+    Food(
+      name: "Broken rice", 
+      description: "Popular lunch dishes", 
+      image: "imgs/comtam.jpg"),
+    Food(
+      name: "Bun Cha", 
+      description: "Rice noodles with meatballs", 
+      image: "imgs/buncha.jpg"),
+    Food(
+      name: "Kimchi", 
+      description: "An indispensable dish in Korean meals.", 
+      image: "imgs/kimchi.jpg"),
+    Food(
+      name: "Hot Dog", 
+      description: "Fast food is popular in America.", 
+      image: "imgs/hotdog.jpg"),
   ];
 
   @override
   Widget build(BuildContext context) {
     List<Food> foods = currentLanguage == Language.Vietnamese ? foodsVietnamese : foodsEnglish;
     return Scaffold(
+      backgroundColor: Color.fromARGB(120, 180, 168, 61),
       appBar: AppBar(
-        title: Text("Thư viện món ăn"),
+        title: Text(t("tenapp")),
+        backgroundColor: Color.fromARGB(255, 250, 182, 81),
         actions: [
           IconButton(
             icon: Icon(Icons.language),
@@ -116,10 +195,10 @@ class FoodLibraryScreen extends StatelessWidget {
             child: ListTile(
               leading: Image.asset(
                 foods[index].image,
-                width: 75,
+                width: 100,
               ),
-              title: Text(foods[index].name),
-              subtitle: Text(foods[index].description),
+              title: Text(foods[index].name, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
+              subtitle: Text(foods[index].description, style: TextStyle(fontSize: 14),)
             ),
           );
         },),
@@ -131,13 +210,13 @@ class ManLanguage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Ngôn ngữ")),
-
+      backgroundColor: Color.fromARGB(120, 255, 252, 222),
+      appBar: AppBar(title: Text(t("ngonngu"),), backgroundColor: Color.fromARGB(255, 250, 182, 81),),
       body: Column(
         children: [
 
           ListTile(
-            title: Text("English"),
+            title: Text("English", style: TextStyle(fontSize: 16)),
             leading: Radio(
               value: Language.English,
               groupValue: currentLanguage,
@@ -150,7 +229,7 @@ class ManLanguage extends StatelessWidget {
           ),
 
           ListTile(
-            title: Text("Tiếng Việt"),
+            title: Text("Tiếng Việt", style: TextStyle(fontSize: 16)),
             leading: Radio(
               value: Language.Vietnamese,
               groupValue: currentLanguage,
@@ -171,7 +250,11 @@ class Manthongtin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Thông tin nhóm"),),
+      backgroundColor: Color.fromARGB(120, 180, 168, 61),
+      appBar: AppBar(
+        title: Text(t("thongtin")),
+        backgroundColor: Color.fromARGB(255, 250, 182, 81),
+        ),
       body: Center(child: Card(
         elevation: 5, 
         margin: EdgeInsets.all(10),
@@ -185,13 +268,13 @@ class Manthongtin extends StatelessWidget {
               color: Colors.red,
             ),
             SizedBox(height: 10),
-            Text("Ứng dụng thư viện món ăn", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+            Text(t("detai"), style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
             SizedBox(height: 15),
-            Text("Môn Học: Lập trình cho thiết bị di động", style: TextStyle(fontSize: 16),),
-            Text("Giáo Viên Hướng Dẫn: Nguyễn Xuân Quế", style: TextStyle(fontSize: 16),),
-            Text("Nhóm 5: Trần Văn Duy",style: TextStyle(fontSize: 16),),
-            Text("Mã Sinh Viên: 23015552", style: TextStyle(fontSize: 16),),
-            Text("Năm Học: 2025-2026", style: TextStyle(fontSize: 16),)
+            Text(t("monhoc"), style: TextStyle(fontSize: 15),),
+            Text(t("giaovien"), style: TextStyle(fontSize: 15),),
+            Text(t("nhom"), style: TextStyle(fontSize: 15),),
+            Text(t("masv"), style: TextStyle(fontSize: 15),),
+            Text(t("namhoc"), style: TextStyle(fontSize: 15),)
             ]
           ),
           ),
