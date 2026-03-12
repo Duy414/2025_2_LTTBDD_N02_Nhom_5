@@ -1,16 +1,14 @@
-# project_ck
+# APP THƯ VIỆN MÓN ĂN
 
-A new Flutter project.
 
-## Getting Started
+---
+## NHÓM PHÁT TRIỂN NHÓM 5
 
-This project is a starting point for a Flutter application.
+| Họ và tên | MSV|
+|------------|----------|
+| **Trần Văn Duy** | 23015552 |
+---
+## LIÊN HỆ
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- **Email:** 23015552@st.phenikaa-uni.edu.vn  
+- **GitHub:** [github.com/Duy414](https://github.com/duy414)
