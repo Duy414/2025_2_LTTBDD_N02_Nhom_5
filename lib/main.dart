@@ -198,10 +198,70 @@ class FoodLibraryScreen extends StatelessWidget {
                 width: 100,
               ),
               title: Text(foods[index].name, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
-              subtitle: Text(foods[index].description, style: TextStyle(fontSize: 14),)
+              subtitle: Text(foods[index].description, style: TextStyle(fontSize: 14),),
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (_) => Manchitiet(food: foods[index])));
+              },
             ),
           );
         },),
+    );
+  }
+}
+class Manchitiet extends StatelessWidget {
+  final Food food;
+  Manchitiet({required this.food});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Color.fromARGB(120, 180, 168, 61),
+      appBar: AppBar(
+        title: Text(food.name),
+        backgroundColor: Color.fromARGB(255, 250, 182, 81),
+      ),
+      body: Center(child: Card(
+          elevation: 10,
+          margin: EdgeInsets.all(20),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.vertical(
+                  top: Radius.circular(20),
+                ),
+                child: Image.asset(
+                  food.image,
+                  width: 300,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.all(20),
+                child: Column(
+                  children: [Text(food.name,
+                      style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Text(
+                      food.description,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 15,
+                        color: Colors.black87,
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                  ],
+                ),),
+            ],
+          ),),),
     );
   }
 }
